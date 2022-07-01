@@ -8,8 +8,8 @@ const findById = async (id) => {
   if (!product) {
     return {
       error: {
-        code: 'notFound',
-        message: 'id não encontrado',
+        status: 404,
+        message: 'Id não encontrado',
       },
     };
   }

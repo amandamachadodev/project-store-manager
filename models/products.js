@@ -9,14 +9,15 @@ const productsModel = {
 //  },
 
   list: async () => {
-    const sql = 'SELECT * FROM StoreManager.products;';
+    const sql = 'SELECT id, name FROM StoreManager.products;';
     const [products] = await connection.execute(sql);
     return products;
   },
 
   findById: async (id) => {
-    const sql = 'SELECT * FROM StoreManager.products WHERE id=?;';
+    const sql = 'SELECT * FROM StoreManager.products WHERE id = ?;';
     const [[product]] = await connection.execute(sql, [id]);
+    if (!product) return null;
     return product;
   },
 };
