@@ -10,19 +10,18 @@ const findId = async (req, res) => {
 
   const product = await productsService.findById(id);
 
-  if (product.error) return res.status(404).json({ message: 'Product not found' });
+  if (!product) return res.status(404).json({ message: 'Product not found' });
 
   return res.status(200).json(product);
 };
 
 const create = async (req, res) => {
   const { name } = req.body;
-
-  const newProduct = await productsService.createProduct(name);
-
-  if (newProduct.error) return res.status(404).json({ message: 'Product not found' });
-
-  return res.status(201).json(newProduct);
+    
+  const result = productsService.createProduct(name);
+  
+  if (!result) return res.status(404).json({ message: 'Not found' })
+  return res.status(201).json(result);
 };
 
 module.exports = { listAll, findId, create };

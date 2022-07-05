@@ -22,11 +22,12 @@ const createProduct = async (name) => {
     return {
       error: {
         status: 404,
-        message: 'Product not found',
+        message: 'Not found',
       },
     };
   }
-  return productsModel.create(name);
+  const newProduct = await productsModel.create(name);
+  return newProduct;
 };
 
 module.exports = {
