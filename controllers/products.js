@@ -1,4 +1,3 @@
-const Joi = require('joi');
 const productsService = require('../services/products');
 
 const listAll = async (_req, res) => {
@@ -21,7 +20,7 @@ const create = async (req, res) => {
 
   const newProduct = await productsService.createProduct(name);
 
-  if (newProduct.error) return res.status(404).json({ message: 'Product not found' });;
+  if (newProduct.error) return res.status(404).json({ message: 'Product not found' });
 
   return res.status(201).json(newProduct);
 };
