@@ -9,7 +9,7 @@ const findById = async (id) => {
     return {
       error: {
         status: 404,
-        message: 'Id não encontrado',
+        message: 'Product not found',
       },
     };
   }
@@ -17,7 +17,20 @@ const findById = async (id) => {
   return product;
 };
 
+const createProduct = async (name) => {
+  if (!name) {
+    return {
+      error: {
+        status: 404,
+        message: 'Product not found',
+      },
+    };
+  }
+  return productsModel.create(name);
+};
+
 module.exports = {
   getAll,
   findById,
+  createProduct,
 };

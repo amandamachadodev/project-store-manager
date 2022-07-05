@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const productsService = require('../services/products');
 
 const listAll = async (_req, res) => {
@@ -12,7 +13,17 @@ const findId = async (req, res) => {
 
   if (product.error) return res.status(404).json({ message: 'Product not found' });
 
-  return res.status(200).json(...product);
+  return res.status(200).json(product);
 };
 
-module.exports = { listAll, findId };
+const create = async (req, res) => {
+  const { name } = req.body;
+
+  const newProduct = await productsService.createProduct(name);
+
+  if (newProduct.error) return res.status(404).json({ message: 'Product not found' });;
+
+  return res.status(201).json(newProduct);
+};
+
+module.exports = { listAll, findId, create };
