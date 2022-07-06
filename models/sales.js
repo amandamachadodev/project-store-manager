@@ -9,20 +9,26 @@ const connection = require('./connection');
 
 const list = async () => {
   const sql = `
-    SELECT sale_id AS saleId, date, product_id AS
-    productId, quantity FROM StoreManager.sales_products ORDER BY sale_id;
+    SELECT SP.sale_id AS 'saleId', S.date, SP.product_id AS 'productId',
+    SP.quantity FROM StoreManager.sales_products AS SP
+    INNER JOIN StoreManager.sales AS S
+    ON S.id = SP.sale_id
+    ORDER BY SP.sale_id;
   `;
   const [sales] = await connection.execute(sql);
   return sales;
 };
 
 const findById = async (id) => {
-  const sql = 'SELECT * FROM StoreManager.sales WHERE id = ?;';
+  const sql = `SELECT S.date, SP.product_id AS 'productId', SP.quantity
+  FROM StoreManager.sales_products AS SP
+  INNER JOIN StoreManager.sales AS S
+  ON S.id = SP.sale_id
+  WHERE sale_id = ?;`;
   const [[sales]] = await connection.execute(sql, [id]);
   if (!sales) return null;
   return sales;
 };
-// };
 
 module.exports = {
   list,
