@@ -20,7 +20,7 @@ const create = async (req, res) => {
     
   const result = productsService.createProduct(name);
   
-  if (!result) return res.status(404).json({ message: 'Not found' })
+  if (!result) return res.status(404).json({ message: 'Not found' });
   return res.status(201).json(result);
 };
 
