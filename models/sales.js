@@ -13,7 +13,7 @@ const list = async () => {
     SP.quantity FROM StoreManager.sales_products AS SP
     INNER JOIN StoreManager.sales AS S
     ON S.id = SP.sale_id
-    ORDER BY SP.sale_id;
+    ORDER BY SP.sale_id, SP.product_id;
   `;
   const [sales] = await connection.execute(sql);
   return sales;

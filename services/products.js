@@ -19,7 +19,6 @@ const findById = async (id) => {
 
 const createProduct = async (name) => {
   const newProduct = await productsModel.create(name);
-  console.log(newProduct);
   return newProduct;
 };
 

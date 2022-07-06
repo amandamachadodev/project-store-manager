@@ -4,7 +4,6 @@ const create = async (name) => {
 //  if (!name) return null;
   const sql = 'INSERT INTO StoreManager.products (name) VALUES (?);';
   const [{ insertId }] = await connection.execute(sql, [name]);
-  console.log({ id: insertId, name });
   return ({ id: insertId, name });
 };
 
@@ -17,7 +16,6 @@ const list = async () => {
 const findById = async (id) => {
   const sql = 'SELECT * FROM StoreManager.products WHERE id = ?;';
   const [[product]] = await connection.execute(sql, [id]);
-  if (!product) return null;
   return product;
 };
 
