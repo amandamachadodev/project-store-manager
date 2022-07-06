@@ -4,8 +4,8 @@ const connection = require('./connection');
 const create = async ({ name }) => {
   if (!name) return null;
   const sql = 'INSERT INTO StoreManager.products (name) VALUES (?)';
-  const [product] = await connection.execute(sql, [name]);
-  return ({ id: product.insertId, name });
+  const [{ insertId }] = await connection.execute(sql, [name]);
+  return ({ id: insertId, name });
 };
 
   const list = async () => {
