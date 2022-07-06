@@ -18,9 +18,8 @@ const findId = async (req, res) => {
 const create = async (req, res) => {
   const { name } = req.body;
     
-  const result = productsService.createProduct(name);
+  const result = await productsService.createProduct(name);
   
-  if (!result) return res.status(404).json({ message: 'Not found' });
   return res.status(201).json(result);
 };
 

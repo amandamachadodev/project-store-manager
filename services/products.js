@@ -18,15 +18,8 @@ const findById = async (id) => {
 };
 
 const createProduct = async (name) => {
-  if (!name) {
-    return {
-      error: {
-        status: 404,
-        message: 'Not found',
-      },
-    };
-  }
   const newProduct = await productsModel.create(name);
+  console.log(newProduct);
   return newProduct;
 };
 

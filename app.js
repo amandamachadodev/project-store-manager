@@ -1,11 +1,14 @@
 const express = require('express');
 
 const productsRoute = require('./routers/productRouter');
+const salesRoute = require('./routers/saleRouter');
 
 const app = express();
 app.use(express.json());
 
 app.use('/products', productsRoute);
+
+app.use('/sales', salesRoute);
 // não remova esse endpoint, é para o avaliador funcionar
 
 // não remova essa exportação, é para o avaliador funcionar
