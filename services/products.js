@@ -5,14 +5,7 @@ const getAll = async () => productsModel.list();
 const findById = async (id) => {
   const product = await productsModel.findById(id);
 
-  if (!product) {
-    return {
-      error: {
-        status: 404,
-        message: 'Product not found',
-      },
-    };
-  }
+  if (!product) return false;
 
   return product;
 };
@@ -24,8 +17,8 @@ const createProduct = async (name) => {
 
 const remove = async (id) => productsModel.remove(id);
 
-const update = async (name) => {
-  const newProduct = await productsModel.update(name);
+const update = async (name, id) => {
+  const newProduct = await productsModel.update(name, id);
   return newProduct;
 };
 
