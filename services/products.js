@@ -17,8 +17,8 @@ const createProduct = async (name) => {
 
 const remove = async (id) => productsModel.remove(id);
 
-const update = async (name, id) => {
-  const newProduct = await productsModel.update(name, id);
+const update = async (changes, id) => {
+  const newProduct = await productsModel.update(changes, id);
   return newProduct;
 };
 
