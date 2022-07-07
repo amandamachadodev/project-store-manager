@@ -23,4 +23,29 @@ const create = async (req, res) => {
   return res.status(201).json(result);
 };
 
-module.exports = { listAll, findId, create };
+const remove = async (req, res) => {
+  const { id } = req.params;
+  const product = await productsService.findById(id);
+
+  if (product === undefined || product.length === 0) {
+    return res.status(404).json({ message: 'Product not found!' });
+  } 
+    await productsService.remove(id);
+    return res.sendStatus(204);
+};
+
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const product = await productsService.findById(id);
+
+  if (product === undefined || product.length === 0) {
+    return res.status(404).json({ message: 'Product not found!' });
+  } 
+
+  const result = await productsService.update(id, name);
+
+  return res.status(201).json(result);
+};
+
+module.exports = { listAll, findId, create, remove, update };
