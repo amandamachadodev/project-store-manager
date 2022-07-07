@@ -26,7 +26,7 @@ const create = async (req, res) => {
 const remove = async (req, res) => {
   const { id } = req.params;
   const product = await productsService.findById(id);
-  if (product === false) return res.status(404).json({ message: 'Product not found!' });
+  if (product === false) return res.status(404).json({ message: 'Product not found' });
   await productsService.remove(id);
   return res.sendStatus(204);
 };
@@ -37,12 +37,12 @@ const update = async (req, res) => {
   const product = await productsService.findById(id);
 
   if (product === false) {
-    return res.status(404).json({ message: 'Product not found!' });
+    return res.status(404).json({ message: 'Product not found' });
   } 
 
   await productsService.update(name, id);
   const result = await productsService.findById(id);
-  return res.status(201).json(result);
+  return res.status(200).json(result);
 };
 
 module.exports = { listAll, findId, create, remove, update };

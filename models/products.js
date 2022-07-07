@@ -26,9 +26,7 @@ const remove = async (id) => {
 
 const update = async (id, changes) => {
   const sql = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
-  const [{ insertId }] = await connection.execute(sql, [changes, id]);
-  console.log({ insertId, changes });
-  return ({ id: insertId, changes });
+  await connection.execute(sql, [changes, id]);
 };
 
 module.exports = {
