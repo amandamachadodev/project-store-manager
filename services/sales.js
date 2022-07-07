@@ -10,7 +10,10 @@ const findById = async (id) => {
   return product;
 };
 
+const remove = async (id) => salesModel.remove(id);
+
 module.exports = {
   getAll,
   findById,
+  remove,
 };

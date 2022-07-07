@@ -8,4 +8,6 @@ salesRoute.get('/', sales.listAll);
 
 salesRoute.get('/:id', sales.findId);
 
+salesRoute.delete('/:id', sales.remove);
+
 module.exports = salesRoute;

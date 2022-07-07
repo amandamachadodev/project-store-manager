@@ -26,11 +26,17 @@ const findById = async (id) => {
   ON S.id = SP.sale_id
   WHERE sale_id = ?;`;
   const [sales] = await connection.execute(sql, [id]);
-  if (!sales) return null;
+  console.log(sales);
   return sales;
+};
+
+const remove = async (id) => {
+  const sql = 'DELETE FROM StoreManager.sales WHERE id = ?;';
+  await connection.execute(sql, [id]);
 };
 
 module.exports = {
   list,
   findById,
+  remove,
 };
