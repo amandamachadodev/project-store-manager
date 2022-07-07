@@ -36,12 +36,12 @@ const update = async (req, res) => {
   const { name } = req.body;
   const product = await productsService.findById(id);
 
-  if (product === undefined || product.length === 0) {
+  if (product === false) {
     return res.status(404).json({ message: 'Product not found!' });
   } 
 
-  const result = await productsService.update(name, id);
-
+  await productsService.update(name, id);
+  const result = await productsService.findById(id);
   return res.status(201).json(result);
 };
 

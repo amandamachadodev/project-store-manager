@@ -25,7 +25,7 @@ const findById = async (id) => {
   INNER JOIN StoreManager.sales AS S
   ON S.id = SP.sale_id
   WHERE sale_id = ?;`;
-  const [[sales]] = await connection.execute(sql, [id]);
+  const [sales] = await connection.execute(sql, [id]);
   if (!sales) return null;
   return sales;
 };
