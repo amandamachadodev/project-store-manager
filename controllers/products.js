@@ -40,8 +40,7 @@ const update = async (req, res) => {
     return res.status(404).json({ message: 'Product not found' });
   } 
 
-  await productsService.update(name, id);
-  const result = await productsService.findById(id);
+  const result = await productsService.update(name, id);
   return res.status(200).json(result);
 };
 

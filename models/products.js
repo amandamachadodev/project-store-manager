@@ -24,9 +24,10 @@ const remove = async (id) => {
   await connection.execute(sql, [id]);
 };
 
-const update = async (id, changes) => {
-  const sql = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
-  await connection.execute(sql, [changes, id]);
+const update = async (name, id) => {
+  const sql = 'UPDATE StoreManager.products SET name = (?) WHERE id = ?';
+  await connection.execute(sql, [name, id]);
+  return { id, name };
 };
 
 module.exports = {
