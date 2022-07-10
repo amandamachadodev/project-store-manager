@@ -28,7 +28,7 @@ const remove = async (req, res) => {
   const product = await productsService.findById(id);
   if (product === false) return res.status(404).json({ message: 'Product not found' });
   await productsService.remove(id);
-  return res.sendStatus(204);
+  return res.status(204);
 };
 
 const update = async (req, res) => {

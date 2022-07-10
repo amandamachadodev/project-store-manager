@@ -17,6 +17,7 @@ const list = async () => {
 const findById = async (id) => {
   const sql = 'SELECT * FROM StoreManager.products WHERE id = ?;';
   const [[product]] = await connection.execute(sql, [id]);
+  console.log(product);
   return product;
 };
 
@@ -29,7 +30,6 @@ const update = async (name, id) => {
   const sql = 'UPDATE StoreManager.products SET name = (?) WHERE id = ?';
   const result = await connection.execute(sql, [name, id]);
   if (!result) return false;
-  console.log({ id, name });
   return { id, name };
 };
 

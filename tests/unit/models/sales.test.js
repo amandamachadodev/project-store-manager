@@ -37,35 +37,36 @@ const salesList = [
 ];
 
 describe('SalesModel', () => {
+  beforeEach(() => {
+    sinon.restore();
+  });
+
   describe('#findById', () => {
-    beforeEach(() => {
-      sinon.restore();
-    })
     it('ao mandar um registro de um id que existe, deve retornar uma venda específica', async () => {
-      sinon.stub(connection, 'execute').resolves(saleId);
+      sinon.stub(connection, 'execute').resolves([saleId]);
       const result = await salesModel.findById(1);
       expect(result).to.be.equal(saleId);
     })
-    it('ao mandar um registro de um id que não existe, deve retornar []', async () => {
+    it('ao mandar um registro de um id que não existe, deve retornar undefined', async () => {
       sinon.stub(connection, 'execute').resolves([]);
       const result = await salesModel.findById(36);
-      expect(result).to.be.equal([]);
+      expect(result).to.be.equal(undefined);
     })
     it('ao mandar um registro de um id que existe, deve retornar um array', async () => {
-      sinon.stub(connection, 'execute').resolves(saleId);
+      sinon.stub(connection, 'execute').resolves([saleId]);
       const result = await salesModel.findById(1);
       expect(result).to.be.a('array');
     })
   })
   describe('#list', () => {
     it('lista vendas', async () => {
+      sinon.stub(connection, 'execute').resolves([salesList]);
       const result = await salesModel.list();
-      sinon.stub(connection, 'execute').resolves(salesList);
       expect(result).to.be.equal(salesList);
     });
     it('a lista de vendas deve ser um array', async () => {
+      sinon.stub(connection, 'execute').resolves([salesList]);
       const result = await salesModel.list();
-      sinon.stub(connection, 'execute').resolves(salesList);
       expect(result).to.be.a('array');
     })
   })

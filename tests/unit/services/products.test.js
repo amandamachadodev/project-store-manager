@@ -18,18 +18,20 @@ const listProducts = [
   }
 ];
 
+const productId = { id: 1, name: 'Martelo de Thor' };
+
 describe('ProductServices', () => {
   beforeEach(() => {
     sinon.restore();
   })
   describe('#findById', () => {
-    it('ao mandar um registro de um id que existe, deve retornar true', async () => {
-      sinon.stub(productModel, 'findById').resolves({ id: 1, name: 'Martelo de Thor' });
+    it('ao mandar um registro de um id que existe deve retornar o produto específico', async () => {
+      sinon.stub(productModel, 'findById').resolves(productId);
       const result = await productService.findById(1);
-      expect(result).to.be.equal({ id: 1, name: 'Martelo de Thor' });
+      expect(result).to.be.equal(productId);
   })
     it('ao mandar um registro de um id que existe, deve retornar um objeto', async () => {
-      sinon.stub(productModel, 'findById').resolves({ id: 1, name: 'Martelo de Thor' });
+      sinon.stub(productModel, 'findById').resolves(productId);
       const product = await productService.findById(1);
       expect(product).to.be.a('object');
   })
@@ -38,7 +40,7 @@ describe('ProductServices', () => {
     it('edita um produto se passar um id e nome válidos', async () => {
       sinon.stub(productModel, 'update').resolves({ id: 1, name: 'Teia do homem aranha' });
       const result = await productService.update(1, { name: "Teia do homem aranha" });
-      expect(result).to.be.equal({ id: 1, name: 'Teia do homem aranha' });
+      expect(result).to.be.deep.equal({ id: 1, name: 'Teia do homem aranha' });
     });
     it('edita um produto e retorna um objeto', async () => {
       sinon.stub(productModel, 'update').resolves({ id: 1, name: 'Teia do homem aranha' });
@@ -46,34 +48,34 @@ describe('ProductServices', () => {
       expect(result).to.be.a('object');
     })
   })
-  describe('#list', () => {
+  describe('#getAll', () => {
     it('lista produtos', async () => {
-      sinon.stub(productModel, 'update').resolves(listProducts);
-      const result = await productServices.list();
+      sinon.stub(productModel, 'list').resolves(listProducts);
+      const result = await productService.getAll();
       expect(result).to.be.equal(listProducts);
     });
     it('a lista de produtos deve ser um array', async () => {
-      sinon.stub(productModel, 'update').resolves(listProducts);
-      const result = await productService.list();
+      sinon.stub(productModel, 'list').resolves(listProducts);
+      const result = await productService.getAll();
       expect(result).to.be.a('array');
     })
   })
   describe('#create', () => {
     it('cria um produto se passar um nome válido', async () => {
       sinon.stub(productModel, 'create').resolves({ id: 4, name: "Escudo do Homem América" });
-      const result = await productService.update({ name: "Escudo do Homem América" });
-      expect(result).to.be.equal({ id: 4, name: "Escudo do Homem América" });
+      const result = await productService.createProduct({ name: "Escudo do Homem América" });
+      expect(result).to.be.deep.equal({ id: 4, name: "Escudo do Homem América" });
     });
     it('cria um produto e retorna um objeto', async () => {
       sinon.stub(productModel, 'create').resolves({ id: 4, name: "Escudo do Homem América" });
-      const result = await productServices.update({ name: "Escudo do Homem América" });
+      const result = await productService.createProduct({ name: "Escudo do Homem América" });
       expect(result).to.be.a('object');
     })
   })
   describe('#remove', () => {
     it('deleta um produto com o id específico', async () => {
       sinon.stub(productModel, 'remove').resolves();
-      const result = await productServices.remove(1);
+      const result = await productService.remove(1);
       expect(result).to.be.not.a('object');
     });
   })
