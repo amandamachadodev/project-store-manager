@@ -10,6 +10,7 @@ const create = async (name) => {
 const list = async () => {
   const sql = 'SELECT id, name FROM StoreManager.products ORDER BY id;';
   const [products] = await connection.execute(sql);
+  console.log(products);
   return products;
 };
 
@@ -26,7 +27,9 @@ const remove = async (id) => {
 
 const update = async (name, id) => {
   const sql = 'UPDATE StoreManager.products SET name = (?) WHERE id = ?';
-  await connection.execute(sql, [name, id]);
+  const result = await connection.execute(sql, [name, id]);
+  if (!result) return false;
+  console.log({ id, name });
   return { id, name };
 };
 
