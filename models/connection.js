@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 
-const user = 'amanda';
-const senha = 'jorge0423';
+const user = 'user';
+const senha = 'password';
 
 const connection = mysql.createPool({
   user: process.env.MYSQL_USER || user,
