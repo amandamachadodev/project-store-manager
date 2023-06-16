@@ -12,6 +12,9 @@ Desenvolvida API com um banco de dados MySQL.
 
 Endpoints para criar, exibir, atualizar e excluir produtos e vendas.
 
+###Bônus
+Realização de teste unitários
+
 
 ### Tecnologias utilizadas
-Insonia, JavaScript, Node.js, Express.js
+Insonia, JavaScript, Node.js, Express.js, Sinon e chai.
