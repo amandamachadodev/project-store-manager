@@ -1,16 +1,13 @@
-# 🚧 README em construção 🚧
+# Projeto Store Manager
 
-<!-- Olá, Tryber!
+### Objetivo
+Criar uma API de gerenciamento de vendas.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+### Desafios
+Back-end seguindo o padrão arquitetural MSC;
 
-É essencial que você preencha esse documento por conta própria, ok?
+Aderência ao padrão REST.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+Desenvolvida API com um banco de dados MySQL.
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+Endpoints para criar, exibir, atualizar e excluir produtos e vendas.
